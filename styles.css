@@ -13,9 +13,9 @@ body {
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 100%; /* Allows the container to stretch to the full width */
     margin: auto;
-    padding: 20px;
+    padding: 20px 5%; /* Adjust side padding to use more of the page width */
 }
 
 header {
@@ -45,45 +45,56 @@ nav ul li a:hover, nav ul li a:focus {
     border-radius: 5px;
 }
 
-.main {
+.row {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-between; /* Distributes space evenly */
+    margin-bottom: 40px; /* Adds space between rows */
 }
 
-.content, .sidebar {
-    flex: 1;
+.container > .row:nth-child(odd), .container > .row:nth-child(even) {
+    flex-direction: row;
 }
 
-.sidebar img {
-    max-width: 100%;
-    height: auto;
+.container > .row:nth-child(even) {
+    flex-direction: row-reverse; /* Alternates the layout for even rows */
 }
 
-footer {
-    background: #006d77;
-    color: #ffffff;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 20px;
+.image, .text {
+    flex: 1; /* Allows items to grow and occupy the available space */
+    padding: 15px; /* Internal spacing */
 }
 
 @media (max-width: 768px) {
-    nav ul {
+    .row {
         flex-direction: column;
-        gap: 0;
     }
+    
+    .image img, .text {
+        width: 100%; /* Full width for smaller screens */
+        padding: 0; /* Reduces padding to utilize more screen space */
+        margin-bottom: 20px; /* Space between stacked elements */
+    }
+    
+    .image:last-child, .text:last-child {
+        margin-bottom: 0; /* Avoids extra spacing at the bottom */
+    }
+    
+    .container {
+        padding: 20px 2%; /* Reduces side padding on smaller screens */
+    }
+}
 
-    nav ul li a {
-        padding: 10px;
+@media (min-width: 1024px) {
+    .container {
+        padding: 20px 10%; /* Increases padding for very wide screens */
     }
 }
 
 img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    display: block; /* Removes unwanted space below images */
+    display: block; /* Ensures images fill their container */
 }
 
 .video-container, .iframe-container {
@@ -103,11 +114,13 @@ img {
 }
 
 .audio-container {
-    margin-top: 20px; /* Spacing above the audio player */
+    margin-top: 20px; /* Extra spacing above the audio player */
 }
 
-/* Ensuring the local video tag fills its container */
-.video-container video {
-    width: 100%; /* Override the width attribute in HTML */
-    height: auto; /* Maintain aspect ratio */
+footer {
+    background: #006d77;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
 }
