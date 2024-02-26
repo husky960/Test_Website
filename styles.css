@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     color: #333;
     line-height: 1.6;
 }
@@ -19,7 +19,7 @@ body {
 }
 
 header {
-    background: #006d77;
+    background: #055962;
     color: #ffffff;
     padding: 20px 0;
     text-align: center;
@@ -27,7 +27,7 @@ header {
 
 nav ul {
     list-style: none;
-    background: #83c5be;
+    background: #55a29b;
     padding: 10px 0;
     display: flex;
     justify-content: center;
@@ -38,10 +38,17 @@ nav ul li a {
     color: white;
     text-decoration: none;
     padding: 10px 15px;
+
+}
+
+nav ul li a.active {
+    color: #fff; /* Change text color */
+    background-color: #2c7a7b; /* Change background color */
+    border-radius: 5px;
 }
 
 nav ul li a:hover, nav ul li a:focus {
-    background-color: #2c7a7b;
+    background-color: #55a29b;
     border-radius: 5px;
 }
 
@@ -53,36 +60,35 @@ nav ul li a:hover, nav ul li a:focus {
     margin-bottom: 40px; /* Adds space between rows */
 }
 
-.container > .row:nth-child(odd), .container > .row:nth-child(even) {
-    flex-direction: row;
-}
-
-.container > .row:nth-child(even) {
-    flex-direction: row-reverse; /* Alternates the layout for even rows */
-}
-
 .image, .text {
     flex: 1; /* Allows items to grow and occupy the available space */
     padding: 15px; /* Internal spacing */
+    max-width: 45%; /* Control the size to ensure alignment */
 }
 
 @media (max-width: 768px) {
     .row {
         flex-direction: column;
     }
-    
+
     .image img, .text {
         width: 100%; /* Full width for smaller screens */
         padding: 0; /* Reduces padding to utilize more screen space */
         margin-bottom: 20px; /* Space between stacked elements */
     }
-    
+
     .image:last-child, .text:last-child {
         margin-bottom: 0; /* Avoids extra spacing at the bottom */
     }
-    
+
     .container {
         padding: 20px 2%; /* Reduces side padding on smaller screens */
+    }
+
+    /* Adjust video container on smaller screens */
+    .iframe-container {
+        width: 100%; /* Video takes full width on smaller screens */
+        padding-top: 56.25%; /* Maintains aspect ratio */
     }
 }
 
@@ -93,16 +99,17 @@ nav ul li a:hover, nav ul li a:focus {
 }
 
 img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     display: block; /* Ensures images fill their container */
 }
 
 .video-container, .iframe-container {
     overflow: hidden;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    padding-top: 28%; /* Adjusted for a smaller and better aspect ratio */
     position: relative;
-    width: 100%;
+    width: 50%; /* Makes video container smaller */
+    margin: auto; /* Centers the video container */
 }
 
 .video-container video, .iframe-container iframe {
@@ -132,13 +139,45 @@ a {
     transition: color 0.3s ease; /* Smooth transition for color change */
 }
 
-a:hover {
+a:hover, a:focus {
     color: #004c4f; /* Darker shade on hover */
     text-decoration: underline; /* Adds underline on hover */
+    outline: none; /* Improves focus for keyboard navigation */
 }
 
-a:focus {
-    color: #004c4f; /* Same color change as hover */
-    text-decoration: underline; /* Ensures visibility for keyboard users */
-    outline: none; /* Removes the default focus outline */
+.welcome-message {
+    background-color: #55a29b; /* Matches the nav background for cohesion */
+    color: #ffffff; /* White text for contrast */
+    padding: 20px;
+    margin: 20px 0 40px; /* Adds space around the message */
+    border-radius: 5px; /* Rounds the corners slightly */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+.welcome-message h2, .welcome-message p {
+    margin-bottom: 15px; /* Adds space between elements */
+}
+
+.welcome-message p {
+    font-size: 18px; /* Slightly larger for readability */
+    line-height: 1.6; /* Keeps line height consistent with body */
+}
+
+/* Additional Styles for Enhanced Readability and Appearance */
+.text p, .sidebar ul li a {
+    font-size: 16px; /* Adjusts font size for better readability */
+    line-height: 1.6; /* Ensures adequate line spacing */
+    color: #333; /* Consistent text color for readability */
+}
+
+.sidebar ul {
+    padding-left: 20px; /* Adds indentation to sidebar list */
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline; /* Adds underline on hover for better visibility */
+}
+
+:focus {
+    outline: 2px solid #004c4f;
 }
